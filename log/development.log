@@ -1,0 +1,1128 @@
+Started GET "/" for 127.0.0.1 at 2018-08-17 21:16:45 -0300
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate RAILS_ENV=development
+
+):
+  
+activerecord (5.1.6) lib/active_record/migration.rb:576:in `check_pending!'
+activerecord (5.1.6) lib/active_record/migration.rb:553:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
+activesupport (5.1.6) lib/active_support/callbacks.rb:97:in `run_callbacks'
+actionpack (5.1.6) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
+web-console (3.6.2) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.6.2) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.6.2) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.6.2) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.6) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.5) lib/rack/method_override.rb:22:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.6) lib/rails/engine.rb:522:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (93.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (88.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateCourses (20180811055001)
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE TABLE "courses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "category" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180811055001"]]
+  [1m[35m (126.9ms)[0m  [1m[36mcommit transaction[0m
+Migrating to DeviseCreateUsers (20180811060020)
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.2ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180811060020"]]
+  [1m[35m (97.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateInscriptions (20180811060854)
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "inscriptions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "kind" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180811060854"]]
+  [1m[35m (66.7ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddUserToInscription (20180811061027)
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.3ms)[0m  [1m[35mALTER TABLE "inscriptions" ADD "user_id" integer[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE  INDEX "index_inscriptions_on_user_id" ON "inscriptions" ("user_id")[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180811061027"]]
+  [1m[35m (111.4ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddCourseToInscription (20180811061142)
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.1ms)[0m  [1m[35mALTER TABLE "inscriptions" ADD "course_id" integer[0m
+  [1m[35m (0.2ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_inscriptions_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_inscriptions_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE  INDEX "index_inscriptions_on_course_id" ON "inscriptions" ("course_id")[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180811061142"]]
+  [1m[35m (145.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-08-18 00:17:26.492639"], ["updated_at", "2018-08-18 00:17:26.492639"]]
+  [1m[35m (66.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_inscriptions_on_course_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_inscriptions_on_course_id' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_inscriptions_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_inscriptions_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+Started GET "/" for 127.0.0.1 at 2018-08-17 21:17:36 -0300
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by CoursesController#index as HTML
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (0.3ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  Rendered courses/index.html.erb within layouts/application (4.8ms)
+Started GET "/" for 127.0.0.1 at 2018-08-17 21:17:38 -0300
+Completed 200 OK in 3344ms (Views: 3321.9ms | ActiveRecord: 0.9ms)
+
+
+Processing by CoursesController#index as HTML
+Started GET "/" for 127.0.0.1 at 2018-08-17 21:17:40 -0300
+Started GET "/" for 127.0.0.1 at 2018-08-17 21:17:40 -0300
+Started GET "/" for 127.0.0.1 at 2018-08-17 21:17:40 -0300
+Processing by CoursesController#index as HTML
+Processing by CoursesController#index as HTML
+Processing by CoursesController#index as HTML
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (0.3ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  Rendering courses/index.html.erb within layouts/application
+  Rendering courses/index.html.erb within layouts/application
+  Rendering courses/index.html.erb within layouts/application
+  Rendered courses/index.html.erb within layouts/application (12.6ms)
+  [1m[36mCourse Load (0.4ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  [1m[36mCourse Load (0.4ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  [1m[36mCourse Load (0.3ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  Rendered courses/index.html.erb within layouts/application (20.8ms)
+  Rendered courses/index.html.erb within layouts/application (21.2ms)
+  Rendered courses/index.html.erb within layouts/application (25.5ms)
+Completed 200 OK in 231ms (Views: 195.0ms | ActiveRecord: 1.2ms)
+
+
+Completed 200 OK in 237ms (Views: 224.6ms | ActiveRecord: 1.9ms)
+
+
+Completed 200 OK in 256ms (Views: 237.1ms | ActiveRecord: 1.1ms)
+
+
+Completed 200 OK in 259ms (Views: 234.2ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/admin/users/new" for 127.0.0.1 at 2018-08-17 21:18:30 -0300
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (uninitialized constant Admin):
+  
+activesupport (5.1.6) lib/active_support/inflector/methods.rb:269:in `const_get'
+activesupport (5.1.6) lib/active_support/inflector/methods.rb:269:in `block in constantize'
+activesupport (5.1.6) lib/active_support/inflector/methods.rb:267:in `each'
+activesupport (5.1.6) lib/active_support/inflector/methods.rb:267:in `inject'
+activesupport (5.1.6) lib/active_support/inflector/methods.rb:267:in `constantize'
+actionpack (5.1.6) lib/action_dispatch/http/request.rb:85:in `controller_class_for'
+actionpack (5.1.6) lib/action_dispatch/http/request.rb:78:in `controller_class'
+actionpack (5.1.6) lib/action_dispatch/routing/route_set.rb:43:in `controller'
+actionpack (5.1.6) lib/action_dispatch/routing/route_set.rb:29:in `serve'
+actionpack (5.1.6) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (5.1.6) lib/action_dispatch/journey/router.rb:33:in `each'
+actionpack (5.1.6) lib/action_dispatch/journey/router.rb:33:in `serve'
+actionpack (5.1.6) lib/action_dispatch/routing/route_set.rb:844:in `call'
+warden (1.2.7) lib/warden/manager.rb:36:in `block in call'
+warden (1.2.7) lib/warden/manager.rb:35:in `catch'
+warden (1.2.7) lib/warden/manager.rb:35:in `call'
+rack (2.0.5) lib/rack/etag.rb:25:in `call'
+rack (2.0.5) lib/rack/conditional_get.rb:25:in `call'
+rack (2.0.5) lib/rack/head.rb:12:in `call'
+rack (2.0.5) lib/rack/session/abstract/id.rb:232:in `context'
+rack (2.0.5) lib/rack/session/abstract/id.rb:226:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+activerecord (5.1.6) lib/active_record/migration.rb:556:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
+activesupport (5.1.6) lib/active_support/callbacks.rb:97:in `run_callbacks'
+actionpack (5.1.6) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
+web-console (3.6.2) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.6.2) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.6.2) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.6.2) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.6) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.5) lib/rack/method_override.rb:22:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.6) lib/rails/engine.rb:522:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started GET "/" for 127.0.0.1 at 2018-08-17 21:18:52 -0300
+Processing by CoursesController#index as HTML
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (0.4ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  Rendered courses/index.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 411ms (Views: 400.4ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2018-08-17 21:18:56 -0300
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (4.2ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (279.4ms)
+Completed 200 OK in 361ms (Views: 323.9ms | ActiveRecord: 2.7ms)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2018-08-17 21:18:58 -0300
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"4WDuokZ2MK70TS1Lw7XI8g4Mf+3vDFWLtvhRNKfFY0udTXQFdSflByd++mvLWpj6YrlM8Cj/8BIWt3B5ilwZEA=="}
+Redirected to http://localhost:3000/
+Filter chain halted as :verify_signed_out_user rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-08-17 21:18:58 -0300
+Processing by CoursesController#index as HTML
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (0.5ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  Rendered courses/index.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 53ms (Views: 49.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/courses/new" for 127.0.0.1 at 2018-08-17 21:19:00 -0300
+Processing by CoursesController#new as HTML
+  Rendering courses/new.html.erb within layouts/application
+  Rendered courses/_form.html.erb (7.3ms)
+  Rendered courses/new.html.erb within layouts/application (10.7ms)
+Completed 200 OK in 78ms (Views: 58.3ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2018-08-17 21:19:02 -0300
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (2.3ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (64.7ms)
+Completed 200 OK in 120ms (Views: 116.5ms | ActiveRecord: 0.0ms)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2018-08-17 21:19:03 -0300
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"UBAI5OkvCJz8Exzvqcqg3eDBo2QDPoCuSDZeimvlcwosPZJD2n7dNS8gy8+hJfDVjHSQecTNJTfoeX/HRnwJUQ=="}
+Redirected to http://localhost:3000/
+Filter chain halted as :verify_signed_out_user rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-08-17 21:19:03 -0300
+Processing by CoursesController#index as HTML
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (0.4ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  Rendered courses/index.html.erb within layouts/application (3.7ms)
+Completed 200 OK in 54ms (Views: 51.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/admin/users/new" for 127.0.0.1 at 2018-08-17 21:26:53 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/admin/users/new"):
+  
+actionpack (5.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.6.2) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.6.2) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.6.2) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.6.2) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.6) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.5) lib/rack/method_override.rb:22:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.6) lib/rails/engine.rb:522:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started GET "/admins/users/new" for 127.0.0.1 at 2018-08-17 21:27:40 -0300
+  
+LoadError (Unable to autoload constant Admins::UsersController, expected /home/rosa/Documentos/CTT/ctt/app/controllers/admins/users_controller.rb to define it):
+  
+activesupport (5.1.6) lib/active_support/dependencies.rb:512:in `load_missing_constant'
+activesupport (5.1.6) lib/active_support/dependencies.rb:202:in `const_missing'
+activesupport (5.1.6) lib/active_support/inflector/methods.rb:271:in `const_get'
+activesupport (5.1.6) lib/active_support/inflector/methods.rb:271:in `block in constantize'
+activesupport (5.1.6) lib/active_support/inflector/methods.rb:267:in `each'
+activesupport (5.1.6) lib/active_support/inflector/methods.rb:267:in `inject'
+activesupport (5.1.6) lib/active_support/inflector/methods.rb:267:in `constantize'
+activesupport (5.1.6) lib/active_support/dependencies.rb:583:in `get'
+activesupport (5.1.6) lib/active_support/dependencies.rb:614:in `constantize'
+actionpack (5.1.6) lib/action_dispatch/http/request.rb:85:in `controller_class_for'
+actionpack (5.1.6) lib/action_dispatch/http/parameters.rb:99:in `binary_params_for?'
+actionpack (5.1.6) lib/action_dispatch/http/parameters.rb:90:in `set_binary_encoding'
+actionpack (5.1.6) lib/action_dispatch/http/parameters.rb:67:in `path_parameters='
+actionpack (5.1.6) lib/action_dispatch/journey/router.rb:48:in `block in serve'
+actionpack (5.1.6) lib/action_dispatch/journey/router.rb:33:in `each'
+actionpack (5.1.6) lib/action_dispatch/journey/router.rb:33:in `serve'
+actionpack (5.1.6) lib/action_dispatch/routing/route_set.rb:844:in `call'
+warden (1.2.7) lib/warden/manager.rb:36:in `block in call'
+warden (1.2.7) lib/warden/manager.rb:35:in `catch'
+warden (1.2.7) lib/warden/manager.rb:35:in `call'
+rack (2.0.5) lib/rack/etag.rb:25:in `call'
+rack (2.0.5) lib/rack/conditional_get.rb:25:in `call'
+rack (2.0.5) lib/rack/head.rb:12:in `call'
+rack (2.0.5) lib/rack/session/abstract/id.rb:232:in `context'
+rack (2.0.5) lib/rack/session/abstract/id.rb:226:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+activerecord (5.1.6) lib/active_record/migration.rb:556:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
+activesupport (5.1.6) lib/active_support/callbacks.rb:97:in `run_callbacks'
+actionpack (5.1.6) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
+web-console (3.6.2) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.6.2) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.6.2) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.6.2) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.6) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.5) lib/rack/method_override.rb:22:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.6) lib/rails/engine.rb:522:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started GET "/admins/users/new" for 127.0.0.1 at 2018-08-17 21:27:59 -0300
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+LoadError (Unable to autoload constant Admins::UsersController, expected /home/rosa/Documentos/CTT/ctt/app/controllers/admins/users_controller.rb to define it):
+  
+activesupport (5.1.6) lib/active_support/dependencies.rb:512:in `load_missing_constant'
+activesupport (5.1.6) lib/active_support/dependencies.rb:202:in `const_missing'
+activesupport (5.1.6) lib/active_support/inflector/methods.rb:271:in `const_get'
+activesupport (5.1.6) lib/active_support/inflector/methods.rb:271:in `block in constantize'
+activesupport (5.1.6) lib/active_support/inflector/methods.rb:267:in `each'
+activesupport (5.1.6) lib/active_support/inflector/methods.rb:267:in `inject'
+activesupport (5.1.6) lib/active_support/inflector/methods.rb:267:in `constantize'
+activesupport (5.1.6) lib/active_support/dependencies.rb:583:in `get'
+activesupport (5.1.6) lib/active_support/dependencies.rb:614:in `constantize'
+actionpack (5.1.6) lib/action_dispatch/http/request.rb:85:in `controller_class_for'
+actionpack (5.1.6) lib/action_dispatch/http/parameters.rb:99:in `binary_params_for?'
+actionpack (5.1.6) lib/action_dispatch/http/parameters.rb:90:in `set_binary_encoding'
+actionpack (5.1.6) lib/action_dispatch/http/parameters.rb:67:in `path_parameters='
+actionpack (5.1.6) lib/action_dispatch/journey/router.rb:48:in `block in serve'
+actionpack (5.1.6) lib/action_dispatch/journey/router.rb:33:in `each'
+actionpack (5.1.6) lib/action_dispatch/journey/router.rb:33:in `serve'
+actionpack (5.1.6) lib/action_dispatch/routing/route_set.rb:844:in `call'
+warden (1.2.7) lib/warden/manager.rb:36:in `block in call'
+warden (1.2.7) lib/warden/manager.rb:35:in `catch'
+warden (1.2.7) lib/warden/manager.rb:35:in `call'
+rack (2.0.5) lib/rack/etag.rb:25:in `call'
+rack (2.0.5) lib/rack/conditional_get.rb:25:in `call'
+rack (2.0.5) lib/rack/head.rb:12:in `call'
+rack (2.0.5) lib/rack/session/abstract/id.rb:232:in `context'
+rack (2.0.5) lib/rack/session/abstract/id.rb:226:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+activerecord (5.1.6) lib/active_record/migration.rb:556:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
+activesupport (5.1.6) lib/active_support/callbacks.rb:97:in `run_callbacks'
+actionpack (5.1.6) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
+web-console (3.6.2) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.6.2) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.6.2) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.6.2) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.6) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.5) lib/rack/method_override.rb:22:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.6) lib/rails/engine.rb:522:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started GET "/admins/users" for 127.0.0.1 at 2018-08-17 21:28:39 -0300
+  
+LoadError (Unable to autoload constant Admins::UsersController, expected /home/rosa/Documentos/CTT/ctt/app/controllers/admins/users_controller.rb to define it):
+  
+activesupport (5.1.6) lib/active_support/dependencies.rb:512:in `load_missing_constant'
+activesupport (5.1.6) lib/active_support/dependencies.rb:202:in `const_missing'
+activesupport (5.1.6) lib/active_support/inflector/methods.rb:284:in `const_get'
+activesupport (5.1.6) lib/active_support/inflector/methods.rb:284:in `block in constantize'
+activesupport (5.1.6) lib/active_support/inflector/methods.rb:267:in `each'
+activesupport (5.1.6) lib/active_support/inflector/methods.rb:267:in `inject'
+activesupport (5.1.6) lib/active_support/inflector/methods.rb:267:in `constantize'
+activesupport (5.1.6) lib/active_support/dependencies.rb:583:in `get'
+activesupport (5.1.6) lib/active_support/dependencies.rb:614:in `constantize'
+actionpack (5.1.6) lib/action_dispatch/http/request.rb:85:in `controller_class_for'
+actionpack (5.1.6) lib/action_dispatch/http/parameters.rb:99:in `binary_params_for?'
+actionpack (5.1.6) lib/action_dispatch/http/parameters.rb:90:in `set_binary_encoding'
+actionpack (5.1.6) lib/action_dispatch/http/parameters.rb:67:in `path_parameters='
+actionpack (5.1.6) lib/action_dispatch/journey/router.rb:48:in `block in serve'
+actionpack (5.1.6) lib/action_dispatch/journey/router.rb:33:in `each'
+actionpack (5.1.6) lib/action_dispatch/journey/router.rb:33:in `serve'
+actionpack (5.1.6) lib/action_dispatch/routing/route_set.rb:844:in `call'
+warden (1.2.7) lib/warden/manager.rb:36:in `block in call'
+warden (1.2.7) lib/warden/manager.rb:35:in `catch'
+warden (1.2.7) lib/warden/manager.rb:35:in `call'
+rack (2.0.5) lib/rack/etag.rb:25:in `call'
+rack (2.0.5) lib/rack/conditional_get.rb:25:in `call'
+rack (2.0.5) lib/rack/head.rb:12:in `call'
+rack (2.0.5) lib/rack/session/abstract/id.rb:232:in `context'
+rack (2.0.5) lib/rack/session/abstract/id.rb:226:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+activerecord (5.1.6) lib/active_record/migration.rb:556:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
+activesupport (5.1.6) lib/active_support/callbacks.rb:97:in `run_callbacks'
+actionpack (5.1.6) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
+web-console (3.6.2) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.6.2) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.6.2) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.6.2) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.6) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.5) lib/rack/method_override.rb:22:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.6) lib/rails/engine.rb:522:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started GET "/admins/users" for 127.0.0.1 at 2018-08-17 21:29:45 -0300
+Processing by Admins::UsersController#index as HTML
+  Rendering admins/users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered admins/users/index.html.erb within layouts/application (645.0ms)
+Completed 500 Internal Server Error in 655ms (ActiveRecord: 2.1ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `new_user_path' for #<#<Class:0x007f8b2415e5f8>:0x007f8b2415c8e8>
+Did you mean?  new_course_path):
+    22: 
+    23: <br>
+    24: 
+    25: <%= link_to 'New User', new_user_path %>
+  
+app/views/admins/users/index.html.erb:25:in `_app_views_admins_users_index_html_erb__1953871358899753842_70117791299980'
+Started GET "/admins/users" for 127.0.0.1 at 2018-08-17 21:29:50 -0300
+Processing by Admins::UsersController#index as HTML
+  Rendering admins/users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered admins/users/index.html.erb within layouts/application (609.2ms)
+Completed 500 Internal Server Error in 616ms (ActiveRecord: 0.4ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `new_user_path' for #<#<Class:0x007f8b2415e5f8>:0x007f8b24bb6f78>
+Did you mean?  new_course_path):
+    22: 
+    23: <br>
+    24: 
+    25: <%= link_to 'New User', new_user_path %>
+  
+app/views/admins/users/index.html.erb:25:in `_app_views_admins_users_index_html_erb__1953871358899753842_70117796723920'
+Started GET "/admins/users" for 127.0.0.1 at 2018-08-17 21:31:12 -0300
+Processing by Admins::UsersController#index as HTML
+  Rendering admins/users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered admins/users/index.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 387ms (Views: 383.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/admins/users/new" for 127.0.0.1 at 2018-08-17 21:31:20 -0300
+Processing by Admins::UsersController#new as HTML
+  Rendering admins/users/new.html.erb within layouts/application
+  Rendered admins/users/_form.html.erb (351.3ms)
+  Rendered admins/users/new.html.erb within layouts/application (353.9ms)
+Completed 500 Internal Server Error in 390ms (ActiveRecord: 1.7ms)
+
+
+  
+ActionView::Template::Error (undefined method `users_path' for #<#<Class:0x007f8b2415e5f8>:0x0055a0ed21afa0>
+Did you mean?  courses_path):
+    1: <%= form_with(model: user, local: true) do |form| %>
+    2:   <% if user.errors.any? %>
+    3:     <div id="error_explanation">
+    4:       <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+  
+app/views/admins/users/_form.html.erb:1:in `_app_views_admins_users__form_html_erb__1622204497003375886_47074827348600'
+app/views/admins/users/new.html.erb:3:in `_app_views_admins_users_new_html_erb___1179203371697410294_47074830828960'
+Started GET "/admins/users" for 127.0.0.1 at 2018-08-17 21:31:31 -0300
+Processing by Admins::UsersController#index as HTML
+  Rendering admins/users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered admins/users/index.html.erb within layouts/application (4.7ms)
+Completed 200 OK in 87ms (Views: 83.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/%C3%A7" for 127.0.0.1 at 2018-08-17 21:31:37 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/%C3%A7"):
+  
+actionpack (5.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.6.2) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.6.2) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.6.2) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.6.2) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.6) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.5) lib/rack/method_override.rb:22:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.6) lib/rails/engine.rb:522:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started GET "/" for 127.0.0.1 at 2018-08-17 21:31:40 -0300
+Processing by CoursesController#index as HTML
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (0.4ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  Rendered courses/index.html.erb within layouts/application (6.4ms)
+Completed 200 OK in 71ms (Views: 59.5ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2018-08-17 21:31:44 -0300
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (2.5ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (33.6ms)
+Completed 200 OK in 96ms (Views: 83.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2018-08-17 21:31:56 -0300
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9soFhZJuOEvYfbLk45zmc7IEMpkWdcy/AiE3D3p4IUhMBRwut26JbkzEY8ZGsfp6Cvm++tLjHrSKql42Ni4yWg==", "user"=>{"email"=>"rarvear@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "rarvear@gmail.com"], ["LIMIT", 1]]
+  [1m[35mSQL (2.0ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "rarvear@gmail.com"], ["encrypted_password", "$2a$11$fHgqMfABWisE34e695IRceeWZCtK.LUeGmF.w9YdacbFQqaD98QaC"], ["created_at", "2018-08-18 00:31:57.166226"], ["updated_at", "2018-08-18 00:31:57.166226"]]
+  [1m[35m (73.3ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 329ms (ActiveRecord: 76.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-08-17 21:31:57 -0300
+Processing by CoursesController#index as HTML
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (0.5ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  Rendered courses/index.html.erb within layouts/application (4.2ms)
+Completed 200 OK in 57ms (Views: 52.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/admins/users" for 127.0.0.1 at 2018-08-17 21:32:16 -0300
+Processing by Admins::UsersController#index as HTML
+  Rendering admins/users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered admins/users/index.html.erb within layouts/application (327.7ms)
+Completed 500 Internal Server Error in 336ms (ActiveRecord: 0.6ms)
+
+
+  
+ActionView::Template::Error (undefined method `user_path' for #<#<Class:0x007f8b2415e5f8>:0x007f8b1d5afe38>
+Did you mean?  course_path):
+    12:   <tbody>
+    13:     <% @users.each do |user| %>
+    14:       <tr>
+    15:         <td><%= link_to 'Show', user %></td>
+    16:         <td><%= link_to 'Edit', edit_user_path(user) %></td>
+    17:         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    18:       </tr>
+  
+app/views/admins/users/index.html.erb:15:in `block in _app_views_admins_users_index_html_erb__1953871358899753842_70117734861940'
+app/views/admins/users/index.html.erb:13:in `_app_views_admins_users_index_html_erb__1953871358899753842_70117734861940'
+Started GET "/admins/users" for 127.0.0.1 at 2018-08-17 21:34:38 -0300
+Processing by Admins::UsersController#index as HTML
+  Rendering admins/users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered admins/users/index.html.erb within layouts/application (306.6ms)
+Completed 500 Internal Server Error in 330ms (ActiveRecord: 0.5ms)
+
+
+  
+ActionView::Template::Error (undefined method `user_path' for #<#<Class:0x007f8b2415e5f8>:0x007f8b29d7a710>
+Did you mean?  course_path):
+    12:   <tbody>
+    13:     <% @users.each do |user| %>
+    14:       <tr>
+    15:         <td><%= link_to 'Show', user %></td>
+    16:         <td><%= link_to 'Edit', edit_admins_user_path(user) %></td>
+    17:         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    18:       </tr>
+  
+app/views/admins/users/index.html.erb:15:in `block in _app_views_admins_users_index_html_erb__1953871358899753842_70117839591780'
+app/views/admins/users/index.html.erb:13:in `_app_views_admins_users_index_html_erb__1953871358899753842_70117839591780'
+  [1m[36mUser Load (2.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 11]]
+Started GET "/admins/users" for 127.0.0.1 at 2018-08-17 21:39:17 -0300
+Processing by Admins::UsersController#index as HTML
+  Rendering admins/users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered admins/users/index.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 57ms (Views: 53.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/admins/users" for 127.0.0.1 at 2018-08-17 21:39:37 -0300
+Processing by Admins::UsersController#index as HTML
+  Rendering admins/users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered admins/users/index.html.erb within layouts/application (348.2ms)
+Completed 500 Internal Server Error in 355ms (ActiveRecord: 0.5ms)
+
+
+  
+ActionView::Template::Error (undefined method `user_path' for #<#<Class:0x007f8b2415e5f8>:0x007f8b1d88ce58>
+Did you mean?  course_path):
+    12:   <tbody>
+    13:     <% @users.each do |user| %>
+    14:       <tr>
+    15:         <td><%= link_to 'Show', user %></td>
+    16:         <td><%= link_to 'Edit', edit_admins_user_path(user) %></td>
+    17:         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    18:       </tr>
+  
+app/views/admins/users/index.html.erb:15:in `block in _app_views_admins_users_index_html_erb__1953871358899753842_70117736344600'
+app/views/admins/users/index.html.erb:13:in `_app_views_admins_users_index_html_erb__1953871358899753842_70117736344600'
+Started GET "/admins/users" for 127.0.0.1 at 2018-08-17 21:40:18 -0300
+Processing by Admins::UsersController#index as HTML
+  Rendering admins/users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered admins/users/index.html.erb within layouts/application (325.8ms)
+Completed 500 Internal Server Error in 333ms (ActiveRecord: 0.5ms)
+
+
+  
+ActionView::Template::Error (undefined method `user_path' for #<#<Class:0x007f8b2415e5f8>:0x007f8b1c1b62b0>
+Did you mean?  course_path):
+    12:   <tbody>
+    13:     <% @users.each do |us| %>
+    14:       <tr>
+    15:         <td><%= link_to 'Show', us %></td>
+    16:         <td><%= link_to 'Edit', edit_admins_user_path(us) %></td>
+    17:         <td><%= link_to 'Destroy', us, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    18:       </tr>
+  
+app/views/admins/users/index.html.erb:15:in `block in _app_views_admins_users_index_html_erb__1953871358899753842_70117724385560'
+app/views/admins/users/index.html.erb:13:in `_app_views_admins_users_index_html_erb__1953871358899753842_70117724385560'
+Started GET "/admins/users" for 127.0.0.1 at 2018-08-17 21:43:16 -0300
+Processing by Admins::UsersController#index as HTML
+  Rendering admins/users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered admins/users/index.html.erb within layouts/application (323.7ms)
+Completed 500 Internal Server Error in 330ms (ActiveRecord: 0.6ms)
+
+
+  
+ActionView::Template::Error (undefined method `user_path' for #<#<Class:0x007f8b2415e5f8>:0x007f8b1c6edfa8>
+Did you mean?  course_path):
+    12:   <tbody>
+    13:     <% @users.each do |us| %>
+    14:       <tr>
+    15:         <td><%= link_to 'Show', us %></td>
+    16:         <td><%= link_to 'Edit', edit_admins_user_path(us) %></td>
+    17:         <td><%= link_to 'Destroy', us, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    18:       </tr>
+  
+app/views/admins/users/index.html.erb:15:in `block in _app_views_admins_users_index_html_erb__1953871358899753842_70117727108380'
+app/views/admins/users/index.html.erb:13:in `_app_views_admins_users_index_html_erb__1953871358899753842_70117727108380'
+Started GET "/admins/users" for 127.0.0.1 at 2018-08-17 21:46:24 -0300
+Processing by Admins::UsersController#index as HTML
+  Rendering admins/users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered admins/users/index.html.erb within layouts/application (312.5ms)
+Completed 500 Internal Server Error in 319ms (ActiveRecord: 0.4ms)
+
+
+  
+ActionView::Template::Error (undefined method `user_path' for #<#<Class:0x007f8b2415e5f8>:0x007f8b24b967f0>
+Did you mean?  course_path):
+    14:       <tr>
+    15:         <td><%= link_to 'Show', admins_user_path(us) %></td>
+    16:         <td><%= link_to 'Edit', edit_admins_user_path(us) %></td>
+    17:         <td><%= link_to 'Destroy', us, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    18:       </tr>
+    19:     <% end %>
+    20:   </tbody>
+  
+app/views/admins/users/index.html.erb:17:in `block in _app_views_admins_users_index_html_erb__1953871358899753842_70117796657380'
+app/views/admins/users/index.html.erb:13:in `_app_views_admins_users_index_html_erb__1953871358899753842_70117796657380'
+Started GET "/admins/users" for 127.0.0.1 at 2018-08-17 21:47:20 -0300
+Processing by Admins::UsersController#index as HTML
+  Rendering admins/users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered admins/users/index.html.erb within layouts/application (3.8ms)
+Completed 200 OK in 52ms (Views: 49.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/admins/users/new" for 127.0.0.1 at 2018-08-17 21:47:25 -0300
+Processing by Admins::UsersController#new as HTML
+  Rendering admins/users/new.html.erb within layouts/application
+  Rendered admins/users/_form.html.erb (304.6ms)
+  Rendered admins/users/new.html.erb within layouts/application (307.7ms)
+Completed 500 Internal Server Error in 316ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `users_path' for #<#<Class:0x007f8b2415e5f8>:0x007f8b1ebd1b80>
+Did you mean?  courses_path):
+    1: <%= form_with(model: user, local: true) do |form| %>
+    2:   <% if user.errors.any? %>
+    3:     <div id="error_explanation">
+    4:       <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+  
+app/views/admins/users/_form.html.erb:1:in `_app_views_admins_users__form_html_erb__1622204497003375886_70117743339340'
+app/views/admins/users/new.html.erb:3:in `_app_views_admins_users_new_html_erb___1179203371697410294_70117746447020'
+Started GET "/admins/users" for 127.0.0.1 at 2018-08-17 21:47:31 -0300
+Processing by Admins::UsersController#index as HTML
+  Rendering admins/users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered admins/users/index.html.erb within layouts/application (4.9ms)
+Completed 200 OK in 58ms (Views: 55.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/admins/users/1" for 127.0.0.1 at 2018-08-17 21:47:34 -0300
+Processing by Admins::UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering admins/users/show.html.erb within layouts/application
+  Rendered admins/users/show.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 84ms (Views: 48.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/admins/users" for 127.0.0.1 at 2018-08-17 21:47:36 -0300
+Processing by Admins::UsersController#index as HTML
+  Rendering admins/users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered admins/users/index.html.erb within layouts/application (5.2ms)
+Completed 200 OK in 64ms (Views: 60.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/admins/users" for 127.0.0.1 at 2018-08-17 21:48:26 -0300
+Processing by Admins::UsersController#index as HTML
+  Rendering admins/users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered admins/users/index.html.erb within layouts/application (4.9ms)
+Completed 200 OK in 59ms (Views: 55.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/admins/users/1" for 127.0.0.1 at 2018-08-17 21:48:32 -0300
+Processing by Admins::UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering admins/users/show.html.erb within layouts/application
+  Rendered admins/users/show.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 60ms (Views: 55.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/admins/users/1/edit" for 127.0.0.1 at 2018-08-17 21:48:41 -0300
+Processing by Admins::UsersController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering admins/users/edit.html.erb within layouts/application
+  Rendered admins/users/_form.html.erb (301.5ms)
+  Rendered admins/users/edit.html.erb within layouts/application (304.4ms)
+Completed 500 Internal Server Error in 314ms (ActiveRecord: 0.3ms)
+
+
+  
+ActionView::Template::Error (undefined method `user_path' for #<#<Class:0x007f8b2415e5f8>:0x007f8b25710978>
+Did you mean?  course_path):
+    1: <%= form_with(model: user, local: true) do |form| %>
+    2:   <% if user.errors.any? %>
+    3:     <div id="error_explanation">
+    4:       <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+  
+app/views/admins/users/_form.html.erb:1:in `_app_views_admins_users__form_html_erb__1622204497003375886_70117802630160'
+app/views/admins/users/edit.html.erb:3:in `_app_views_admins_users_edit_html_erb__949250057890364020_70117802674600'
+Started GET "/admins/users/1/edit" for 127.0.0.1 at 2018-08-17 21:54:38 -0300
+Processing by Admins::UsersController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering admins/users/edit.html.erb within layouts/application
+  Rendered admins/users/_form.html.erb (7.4ms)
+  Rendered admins/users/edit.html.erb within layouts/application (307.8ms)
+Completed 500 Internal Server Error in 316ms (ActiveRecord: 0.4ms)
+
+
+  
+ActionView::Template::Error (undefined method `user_path' for #<#<Class:0x007f8b2415e5f8>:0x007f8b1da051b8>
+Did you mean?  course_path):
+    2: 
+    3: <%= render 'form', user: @user %>
+    4: 
+    5: <%= link_to 'Show', @user %> |
+    6: <%= link_to 'Back', admins_users_path %>
+  
+app/views/admins/users/edit.html.erb:5:in `_app_views_admins_users_edit_html_erb__949250057890364020_70117737115080'
+Started GET "/admins/users/1/edit" for 127.0.0.1 at 2018-08-17 21:55:40 -0300
+Processing by Admins::UsersController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering admins/users/edit.html.erb within layouts/application
+  Rendered admins/users/_form.html.erb (7.4ms)
+  Rendered admins/users/edit.html.erb within layouts/application (10.4ms)
+Completed 200 OK in 65ms (Views: 60.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/admins/users" for 127.0.0.1 at 2018-08-17 21:56:25 -0300
+Processing by Admins::UsersController#index as HTML
+  Rendering admins/users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered admins/users/index.html.erb within layouts/application (5.6ms)
+Completed 200 OK in 74ms (Views: 71.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/admins/users/1" for 127.0.0.1 at 2018-08-17 21:56:27 -0300
+Processing by Admins::UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering admins/users/show.html.erb within layouts/application
+  Rendered admins/users/show.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 59ms (Views: 54.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/admins/users" for 127.0.0.1 at 2018-08-17 21:56:31 -0300
+Processing by Admins::UsersController#index as HTML
+  Rendering admins/users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered admins/users/index.html.erb within layouts/application (5.9ms)
+Completed 200 OK in 65ms (Views: 61.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/admins/users" for 127.0.0.1 at 2018-08-17 21:57:54 -0300
+Processing by Admins::UsersController#index as HTML
+  Rendering admins/users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered admins/users/index.html.erb within layouts/application (4.3ms)
+Completed 200 OK in 57ms (Views: 53.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/admins/users/1" for 127.0.0.1 at 2018-08-17 21:57:57 -0300
+Processing by Admins::UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering admins/users/show.html.erb within layouts/application
+  Rendered admins/users/show.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 58ms (Views: 54.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/admins/users/1/edit" for 127.0.0.1 at 2018-08-17 21:58:00 -0300
+Processing by Admins::UsersController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering admins/users/edit.html.erb within layouts/application
+  Rendered admins/users/_form.html.erb (5.4ms)
+  Rendered admins/users/edit.html.erb within layouts/application (9.0ms)
+Completed 200 OK in 64ms (Views: 59.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/admins/users" for 127.0.0.1 at 2018-08-17 21:58:03 -0300
+Processing by Admins::UsersController#index as HTML
+  Rendering admins/users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered admins/users/index.html.erb within layouts/application (6.4ms)
+Completed 200 OK in 61ms (Views: 57.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/admins/users/1" for 127.0.0.1 at 2018-08-17 21:58:11 -0300
+Processing by Admins::UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering admins/users/show.html.erb within layouts/application
+  Rendered admins/users/show.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 60ms (Views: 55.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/admins/users" for 127.0.0.1 at 2018-08-17 21:58:17 -0300
+Processing by Admins::UsersController#index as HTML
+  Rendering admins/users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered admins/users/index.html.erb within layouts/application (5.6ms)
+Completed 200 OK in 71ms (Views: 67.8ms | ActiveRecord: 0.7ms)
+
+
+Started DELETE "/admins/users/1" for 127.0.0.1 at 2018-08-17 21:58:25 -0300
+Processing by Admins::UsersController#destroy as HTML
+  Parameters: {"authenticity_token"=>"7VpkffVE4HXADGZ82GSbleL31wcMhx5XFFcRI84V/1aRd/7axhU13BM/sVzQi8udjkLkGst0u860GDBu44yFDQ==", "id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.9ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = ?[0m  [["id", 1]]
+  [1m[35m (84.0ms)[0m  [1m[36mcommit transaction[0m
+Completed 500 Internal Server Error in 468ms (ActiveRecord: 86.4ms)
+
+
+  
+NameError (undefined local variable or method `users_url' for #<Admins::UsersController:0x007f8b1d9d1868>
+Did you mean?  courses_url):
+  
+app/controllers/admins/users_controller.rb:59:in `block (2 levels) in destroy'
+app/controllers/admins/users_controller.rb:58:in `destroy'
+Started GET "/admins/users" for 127.0.0.1 at 2018-08-17 21:58:38 -0300
+Processing by Admins::UsersController#index as HTML
+  Rendering admins/users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered admins/users/index.html.erb within layouts/application (3.7ms)
+Completed 200 OK in 86ms (Views: 83.2ms | ActiveRecord: 0.4ms)
+
+
+Started DELETE "/admins/users/1" for 127.0.0.1 at 2018-08-17 22:00:15 -0300
+Processing by Admins::UsersController#destroy as HTML
+  Parameters: {"authenticity_token"=>"7VpkffVE4HXADGZ82GSbleL31wcMhx5XFFcRI84V/1aRd/7axhU13BM/sVzQi8udjkLkGst0u860GDBu44yFDQ==", "id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Completed 404 Not Found in 15ms (ActiveRecord: 3.3ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=1):
+  
+app/controllers/admins/users_controller.rb:67:in `set_user'
+Started GET "/" for 127.0.0.1 at 2018-08-17 22:01:03 -0300
+Processing by CoursesController#index as HTML
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (0.4ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  Rendered courses/index.html.erb within layouts/application (5.9ms)
+Completed 200 OK in 71ms (Views: 58.9ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2018-08-17 22:01:48 -0300
+Processing by Devise::RegistrationsController#new as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (2.8ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (10.8ms)
+Completed 200 OK in 83ms (Views: 56.6ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2018-08-17 22:01:57 -0300
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"m4iJM+BvHAqcY9TUlupiQXDlXbgcOQwN4OjTfTltXSQhR5CYxW+tLwjaBfYzx35IyBjR29iv3gZoY7pEdTtONg==", "user"=>{"email"=>"rarvear@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "rarvear@gmail.com"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (2.4ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (11.2ms)
+Completed 200 OK in 253ms (Views: 57.1ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2018-08-17 22:02:05 -0300
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"DGQXJhS2/p5U3ParVYsQ7yvXGm0ZSePHxpxKGcsV3k1wSY2BJ+crN4fvIYtdZEDnR2IpcN66Rl5m02tU5oykFg==", "user"=>{"email"=>"rarvear@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "rarvear@gmail.com"], ["LIMIT", 1]]
+  [1m[35mSQL (2.6ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "rarvear@gmail.com"], ["encrypted_password", "$2a$11$X2dLqO/YqCmsleNg0ydioONLtyjqw82a9rL5AHLgvAqX6W/fRFkjm"], ["created_at", "2018-08-18 01:02:05.888393"], ["updated_at", "2018-08-18 01:02:05.888393"]]
+  [1m[35m (86.2ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 289ms (ActiveRecord: 89.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-08-17 22:02:06 -0300
+Processing by CoursesController#index as HTML
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (0.4ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  Rendered courses/index.html.erb within layouts/application (3.7ms)
+Completed 200 OK in 54ms (Views: 50.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2018-08-17 22:02:13 -0300
+Processing by Devise::RegistrationsController#new as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 5ms (ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-08-17 22:02:14 -0300
+Processing by CoursesController#index as HTML
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (0.3ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  Rendered courses/index.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 51ms (Views: 47.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/courses/new" for 127.0.0.1 at 2018-08-17 22:02:18 -0300
+Processing by CoursesController#new as HTML
+  Rendering courses/new.html.erb within layouts/application
+  Rendered courses/_form.html.erb (8.4ms)
+  Rendered courses/new.html.erb within layouts/application (11.7ms)
+Completed 200 OK in 82ms (Views: 61.2ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/courses" for 127.0.0.1 at 2018-08-17 22:02:29 -0300
+Processing by CoursesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"/60RjupAAdO1HLUu4ZZgAfJwk8L9D6mAMEJG+fjSq7kt686AwsaiH5IBjoxP56VRl+2EH32MfEMtMsZ6D0GRMA==", "course"=>{"name"=>"MAth", "category"=>"MATH"}, "commit"=>"Create Course"}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO "courses" ("name", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "MAth"], ["category", "MATH"], ["created_at", "2018-08-18 01:02:29.927784"], ["updated_at", "2018-08-18 01:02:29.927784"]]
+  [1m[35m (186.9ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/courses/1
+Completed 302 Found in 199ms (ActiveRecord: 188.0ms)
+
+
+Started GET "/courses/1" for 127.0.0.1 at 2018-08-17 22:02:30 -0300
+Processing by CoursesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCourse Load (0.6ms)[0m  [1m[34mSELECT  "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering courses/show.html.erb within layouts/application
+  Rendered courses/show.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 57ms (Views: 50.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/admins/users" for 127.0.0.1 at 2018-08-17 22:03:06 -0300
+Processing by Admins::UsersController#index as HTML
+  Rendering admins/users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered admins/users/index.html.erb within layouts/application (5.6ms)
+Completed 200 OK in 65ms (Views: 61.2ms | ActiveRecord: 0.6ms)
+
+
+Started DELETE "/admins/users/2" for 127.0.0.1 at 2018-08-17 22:03:12 -0300
+Processing by Admins::UsersController#destroy as HTML
+  Parameters: {"authenticity_token"=>"Jv60juSRz0yiMX3FkKD8fF8JaFG3JYBsQpAdFX7sC5Ja0y4p18Aa5XECquWYT6x0M7xbTHDWJfXi3zxYU3VxyQ==", "id"=>"2"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (2.1ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = ?[0m  [["id", 2]]
+  [1m[35m (96.5ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/admins/users
+Completed 302 Found in 109ms (ActiveRecord: 99.1ms)
+
+
+Started GET "/admins/users" for 127.0.0.1 at 2018-08-17 22:03:12 -0300
+Processing by Admins::UsersController#index as HTML
+  Rendering admins/users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered admins/users/index.html.erb within layouts/application (3.6ms)
+Completed 200 OK in 53ms (Views: 50.3ms | ActiveRecord: 0.5ms)
+
+
